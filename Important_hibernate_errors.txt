@@ -10,4 +10,8 @@ Important hibernate errors:
 
 5) mappedBy mostly used along with OneToMany,OneToOne
    
-5) @JoinColumn(name="db name mostly FK")
+6) @JoinColumn(name="db name mostly FK")
+
+7) ToOne is simply Object; private Student student;
+
+8) ToMany is always collection; private Set<Student> students = new HashSet<>();
