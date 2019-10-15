@@ -1,0 +1,55 @@
+create table student(id int,name varchar(30),age int, PRIMARY KEY (id));
+
+insert into student(id,name,age) values(1,'Vimal',30);
+insert into student(id,name,age) values(2,'Selvi',29);
+insert into student(id,name,age) values(3,'Jith',4);
+insert into student(id,name,age) values(4,'Test',3);
+insert into student(id,name,age) values(5,'Raj',58);
+insert into student(id,name,age) values(6,'Jay',64);
+
+create table test(id int auto_increment,test_name varchar(30),student_id int,
+ primary key (id), foreign key (student_id) references student(id) );
+
+insert into test(test_name,student_id) values('oops',1);
+insert into test(test_name,student_id) values('oops',2);
+insert into test(test_name,student_id) values('ds',1);
+insert into test(test_name,student_id) values('ds',2);
+
+insert into test(test_name,student_id) values('eng',3);
+insert into test(test_name,student_id) values('eng',4);
+insert into test(test_name,student_id) values('ss',3);
+insert into test(test_name,student_id) values('ss',4);
+insert into test(test_name,student_id) values('mat',3);
+insert into test(test_name,student_id) values('mat',4);
+
+create table employee(id int auto_increment, name varchar(30),salary double, primary key (id));
+create table exam(id int auto_increment, exam_name varchar(30), primary key (id));
+
+
+insert into employee(name,salary) values('Vimal',200000);
+insert into employee(name,salary) values('selvi',250000);
+insert into employee(name,salary) values('Jay',220000);
+insert into employee(name,salary) values('Raj',220000);
+insert into employee(name,salary) values('Jith',210000);
+
+
+insert into exam(exam_name) values('Java');
+insert into exam(exam_name) values('J2EE');
+insert into exam(exam_name) values('Python');
+insert into exam(exam_name) values('Scala');
+insert into exam(exam_name) values('Apache Spark');
+
+create table employee_exam(employee_id int,exam_id int);
+
+insert into employee_exam values(1,1);
+insert into employee_exam values(2,2);
+insert into employee_exam values(3,3);
+insert into employee_exam values(4,4);
+insert into employee_exam values(5,5);
+
+create table project(id int auto_increment,project_name varchar(30),employee_id int,primary key(id));
+insert into project(project_name,employee_id) values('scraping',1);
+insert into project(project_name,employee_id) values('scraping',3);
+insert into project(project_name,employee_id) values('scraping',5);
+insert into project(project_name,employee_id) values('nlu',2);
+insert into project(project_name,employee_id) values('nlu',4);

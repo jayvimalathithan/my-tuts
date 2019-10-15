@@ -1,0 +1,48 @@
+1)Always remember MO JO(ManyToOne + JoinTable this time)
+
+2) public class Employee {
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	private String name;
+
+	private Double salary;
+	 /* Fetch type eager is mandatory */ 
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="employee")
+	private Set<Exam> exams = new HashSet<>();
+    }
+
+3)public class Exam {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	private String examName;
+
+	@ManyToOne
+	@JoinTable(name="employee_exam" /* new common table */ ,
+           joinColumns = @JoinColumn(name="exam_id" /* db_column_name in new table */ 
+                          ,referencedColumnName = "id" /* db_col_name in first table */ ),
+           inverseJoinColumns = @JoinColumn(name="employee_id"  /* db_col_name in new table */ 
+                                 ,referencedColumnName = "id"  /* db_col_name in second table */  ))
+	private Employee employee;
+    }
+
+4) public interface EmployeeRepository extends JpaRepository<Employee, Integer>
+   {
+     // use join fetch	
+     @Query("select e from Employee e join fetch e.exams")	
+     List<Employee> getEmployeeExam();
+   }
+
+5) Main.java 
+   List<Employee> employees=  employeeRepository.getEmployeeExam();
+   for(Employee emp:employees)
+   {
+     for(Exam ex:emp.getExams())
+     {
+	System.out.println("EMP_NAME:"+emp.getName()+" EXAM_NAME:"+ex.getExamName());
+     }
+   }

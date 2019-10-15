@@ -20,6 +20,23 @@ Important hibernate errors:
 
 7) @JoinColumn is used along with OneToOne,ManyToOne (remember MOJO JO JO )
 
-8) ToOne is simply Object; private Student student;
+8) OneToMany & @JoinColumn is possible but it is not a good practice
 
-9) ToMany is always collection; private Set<Student> students = new HashSet<>();
+9) ToOne is simply Object; private Student student;
+
+10) ToMany is always collection; private Set<Student> students = new HashSet<>();
+
+11) QuerySyntaxExpression state is not mapped: lowercase state in @Query.It should be named as entity.
+
+12)  Associations marked as mappedBy must not define database mappings 
+   like @JoinTable or @JoinColumn
+
+13) @JoinTable(
+  name="USER_POST",  /* name of the new table */
+  joinColumns=@JoinColumn(name="USER_ID" /* column in the  */ , referencedColumnName="ID"),
+  inverseJoinColumns=@JoinColumn(name="POST_ID", referencedColumnName="ID"))
+
+14)  org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: 
+     com.example.demo.entity.Employee.exams
+     change that exams to FetchType.EAGER
+     
