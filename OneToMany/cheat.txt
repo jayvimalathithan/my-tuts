@@ -1,0 +1,46 @@
+Student    Test
+-id         -id
+-name       -test_name
+-age        -student_id
+
+1)compare ids(Student.id -> Test.student_id) to identify mapping types(ex one to many)
+  *****consider only join on columns
+only one Student.id -> multiple same Test.student_id
+(ie) OneToMany
+
+   
+2) public class Student {
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	private String name;
+
+	private Integer age;
+	
+        // change fetch type EAGER for using join fetch , mappedBy is other class java variable name
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="student")
+        private Set<Test> test = new HashSet<>();
+        // Getter setter
+  }
+
+3)public class Test {
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
+	private String testName;
+	// fetch type lazy , MO JO, JoinColumn(name="if its column or table then its db_name ")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="student_id")
+	private Student student;
+    }
+
+4) Better to write query from top(Student) to bottom(Test) hierarchy table  
+   ***** use join fetch to achieve performance
+
+public interface StudentRepository extends JpaRepository<Student, Integer>
+{
+  @Query("select s from Student s join fetch s.test")	
+  public List<Student> getStudentAndTest();
+}
