@@ -1,5 +1,7 @@
 Important hibernate errors:
 
+0) Always remember in hib mappings(1->*,*->1,1->1,*->*),to map java variables with join on condition column
+
 1) mapped by and join column should not come together.
 
 2) Collection is always lazy by default, change that to eager if u use join fetch.
@@ -16,6 +18,8 @@ Important hibernate errors:
    
 6) @JoinColumn(name="db name mostly FK")
 
-7) ToOne is simply Object; private Student student;
+7) @JoinColumn is used along with OneToOne,ManyToOne (remember MOJO JO JO )
 
-8) ToMany is always collection; private Set<Student> students = new HashSet<>();
+8) ToOne is simply Object; private Student student;
+
+9) ToMany is always collection; private Set<Student> students = new HashSet<>();
