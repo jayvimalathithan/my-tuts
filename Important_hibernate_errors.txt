@@ -4,8 +4,12 @@ Important hibernate errors:
 
 2) Collection is always lazy by default, change that to eager if u use join fetch.
 
-3) I can use multiple @Entity,@Table for same table student
+3) I can use multiple @Entity,@Table for same table student[TESTED]
+  @Entity @Table("student")
+  public class Student{/* dont forget to create some id*/}
 
+  @Entity @Table("student")
+  public class Stud {/* dont forget to create some id*/}
 4) mappedBy = "other class java variable name";
 
 5) mappedBy mostly used along with OneToMany,OneToOne
