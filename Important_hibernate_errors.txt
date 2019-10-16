@@ -1,5 +1,7 @@
 Important hibernate errors:
 
+-1) use Set, distinct and join fetch to avoid duplicate
+
 0) Always remember in hib mappings(1->*,*->1,1->1,*->*),to map java variables with join on condition column
 
 1) mapped by and join column should not come together.

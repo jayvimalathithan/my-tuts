@@ -32,7 +32,7 @@
 
 4) public interface EmployeeRepository extends JpaRepository<Employee, Integer>
    {
-     // use join fetch	
+     // use distinct and join fetch	
      @Query("select e from Employee e join fetch e.exams")	
      List<Employee> getEmployeeExam();
    }
