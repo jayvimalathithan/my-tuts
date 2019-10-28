@@ -1,0 +1,118 @@
+db.posts.insertMany([
+  {
+    title:"Post 2",
+    body:"Body of post 2",
+    category:"Tech",
+    date:Date()
+  },
+  {
+   title:"Post 3",
+   body:"Body of post 3",
+   category:"Politics",
+   date:Date()
+  },
+  {
+   title:"Post 4",
+   body:"Body of post 4",
+   category:"Entertainmnet",
+   date:Date()
+  }
+])
+
+
+
+db.posts.insertMany([{
+        "title" : "Post five",
+        "body" : "body of Post five",
+        "category" : "News",
+        "likes" : 100,
+        "tags" : [
+                "news",
+                "events"
+        ],
+        "user" : {
+                "name" : "John Doe",
+                "status" : "author"
+        },
+        "date" : Date()
+},
+{
+        "title" : "Post six",
+        "body" : "body of Post six",
+        "category" : "News",
+        "likes" : 105,
+        "tags" : [
+                "news",
+                "events"
+        ],
+        "user" : {
+                "name" : "John Doe",
+                "status" : "author"
+        },
+        "date" : Date()
+},
+{
+        "title" : "Post 7",
+        "body" : "body of Post 7",
+        "category" : "News",
+        "likes" : 10,
+        "tags" : [
+                "news",
+                "events"
+        ],
+        "user" : {
+                "name" : "John Doe",
+                "status" : "author"
+        },
+        "date" : Date()
+}])
+
+
+db.posts.update({"title" : "Post 7"},{
+	"title" : "Post 7",
+    "body" : "body of Post 7",
+    "category" : "News",
+    "likes" : 1008
+},{upsert:true})
+
+use sample
+
+db.zips.aggregate([
+  {$group:{ _id:"$state",total:{"$sum":"$pop"} } }
+])
+
+db.zips.aggregate([
+  {$group:{ _id:"$state",total:{"$sum":"$pop"} } },
+  {$sort:{"total":-1}}
+])
+
+db.zips.aggregate([
+  {$group:{ _id:"$state",total:{"$sum":"$pop"} } },
+  {$match:{ "total":{ "$gt":7730188} } },
+  {$sort:{"total":-1}}
+])
+
+
+db.book.aggregate([
+  {$group:{_id:"$title",authors:{$concat:"$authors"}}},
+  {$sort:{"authors":1}}
+])
+
+
+db.book.find().forEach(function(doc){
+   
+print("TITLE:"+doc.title+" AUTHORS:"+doc.authors)
+})
+
+db.book.find().forEach(function(doc){
+ 
+  var x,str = ""
+  for(var a in doc.authors)
+  {
+    x = doc.authors[a].trim()
+    if (x!="")
+    str = str+","+x
+  }   
+  print(a)
+
+})
