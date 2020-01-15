@@ -1,0 +1,33 @@
+
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+bin\windows\kafka-server-start.bat config\server.properties
+
+bin\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+
+bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+
+kafka-console-producer --broker-list localhost:9092 --topic users
+
+key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializ
+
+  @KafkaListener(topics = "Kafka_Example_json", group = "group_json",
+            containerFactory = "userKafkaListenerFactory")
+    public void consumeJson(User user) {
+        System.out.println("Consumed JSON Message: " + user);
+    }
+
+spring:
+   kafka:
+     consumer:
+        bootstrap-servers: localhost:9092
+        group-id: group_id
+        auto-offset-reset: earliest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+     producer:
+        bootstrap-servers: localhost:9092
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
