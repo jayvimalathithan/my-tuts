@@ -25,7 +25,7 @@ Windows to add extrea slash( //CN=Kafka-Secutiry-CA)
 
  		# Setting up Trust store
 1.  keytool -keystore kafka.server.truststore.jks -alias CARoot -import -file ca-cert -storepass $SRVPASS -keypass $SRVPASS -noprompt
-    *Certificate was added to keystore*
+    * Certificate was added to keystore *
 
 
 
