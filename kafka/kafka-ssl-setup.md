@@ -57,9 +57,9 @@ Windows to add extrea slash( //CN=Kafka-Secutiry-CA)
 4. keytool -keystore kafka.client.truststore.jks -alias CARoot -import -file ca-cert -storepass $CLIPASS -keypass $CLIPASS -noprompt
    * Certificate was added to keystore
 5. ll
-  total 8
-  -rw-r--r-- 1 vvimalat 1049089 1860 Jan 15 14:57 ca-cert
-  -rw-r--r-- 1 vvimalat 1049089 1602 Jan 15 15:01 **kafka.client.truststore.jks**
+  * total 8
+  * -rw-r--r-- 1 vvimalat 1049089 1860 Jan 15 14:57 ca-cert
+  * -rw-r--r-- 1 vvimalat 1049089 1602 Jan 15 15:01 **kafka.client.truststore.jks**
 6. keytool -list -V -keystore kafka.client.truststore.jks
      * Enter keystore password:  clientpass
      ### consumer client properties
